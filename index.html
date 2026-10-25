@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#4b0d1b">
+<title>دعوة حفل توقيع رواية رؤى مبتورة</title>
+<style>
+:root{--wine:#4b0d1b;--cream:#f4e8d4;--ink:#321b17}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#211513;color:var(--cream);font-family:Tahoma,Arial,sans-serif}
+body{display:flex;justify-content:center;align-items:center;min-height:100vh;min-height:100dvh;padding:10px 0}
+#app{width:min(100%, calc(100dvh * 0.666667));max-width:640px;margin:auto;position:relative}
+.page{position:relative;width:100%;display:none;line-height:0}
+.page.active{display:block}
+.poster{display:block;width:100%;height:auto}
+.hit{position:absolute;display:block;border:0;background:transparent;cursor:pointer;padding:0;z-index:5;border-radius:22px}
+.hit:focus-visible{outline:3px solid #ffe3a5;background:#ffffff18}
+#openBtn{left:29%;top:76.1%;width:48%;height:7.5%}
+#rsvp{left:61.8%;top:46.5%;width:35.3%;height:6.2%}
+#mapBtn{left:61.8%;top:53.4%;width:35.3%;height:5.9%}
+#hallBtn{left:61.8%;top:60.3%;width:35.3%;height:5.9%}
+#freeBtn{left:61.8%;top:67.3%;width:35.3%;height:6.0%}
+#reserveBtn{left:61.8%;top:74.4%;width:35.3%;height:6.0%}
+#commentBtn{left:57.5%;top:90.0%;width:40%;height:6.2%}
+#stars{position:absolute;left:64%;top:84.6%;width:30%;height:3.4%;display:flex;direction:ltr;z-index:6}
+#stars button{flex:1;border:0;background:transparent;padding:0;cursor:pointer}
+#stars button:focus-visible{outline:2px solid #ffe3a5}
+#musicToggle{position:fixed;z-index:20;top:10px;left:10px;border:1px solid #d6b77b;border-radius:999px;background:#4b0d1b;color:#fff4df;padding:9px 12px;font-size:13px;box-shadow:0 2px 12px #0007;cursor:pointer}
+#status{position:fixed;z-index:30;bottom:12px;left:50%;transform:translateX(-50%);width:max-content;max-width:90vw;background:#311016;color:#fff5e5;border:1px solid #c9a76c;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.4;display:none;text-align:center}
+#modalShade{position:fixed;inset:0;background:#160b0be0;z-index:40;display:none;align-items:center;justify-content:center;padding:18px}
+#modal{width:min(100%,430px);background:#f7ecda;color:#351a19;border:2px solid #a67b4d;border-radius:20px;padding:22px;box-shadow:0 15px 60px #0008;line-height:1.5}
+#modal h2{font-size:21px;margin:0 0 14px;color:#4b0d1b}
+#modal label{display:block;font-size:14px;margin:12px 0 5px}
+#modal input,#modal textarea,#modal select{width:100%;border:1px solid #bca48b;border-radius:10px;padding:11px;font:inherit;background:#fffaf2;color:#321b17}
+#modal textarea{min-height:90px;resize:vertical}
+.actions{display:flex;gap:9px;margin-top:16px}
+.actions button{flex:1;border:0;border-radius:12px;padding:12px 9px;font:inherit;cursor:pointer}
+.primary{background:#4b0d1b;color:#fff4df}
+.secondary{background:#e6d4bd;color:#321b17}
+.note{font-size:12px;opacity:.82;margin-top:12px}
+@media(min-width:641px){#app{box-shadow:0 12px 60px #0008}}
+@media(max-height:560px) and (orientation:landscape){#app{width:auto;height:calc(100dvh - 20px)}.page{height:100%}.poster{width:auto;height:100%;max-width:100vw;margin:auto}}
+</style>
+</head>
+<body>
+<main id="app" aria-label="دعوة حفل توقيع رواية رؤى مبتورة">
+  <section id="page1" class="page active" aria-label="واجهة الدعوة">
+    <img class="poster" src="page1.gif" alt="دعوة حفل توقيع رواية رؤى مبتورة - الكاتبة هند مصطفى رشيد">
+    <button id="openBtn" class="hit" aria-label="Open Invitation" title="Open Invitation"></button>
+  </section>
+  <section id="page2" class="page" aria-label="تفاصيل الدعوة والحجز">
+    <img class="poster" src="page2.gif" alt="تفاصيل حفل توقيع رواية رؤى مبتورة">
+    <button id="rsvp" class="hit" aria-label="تأكيد الحضور" title="تأكيد الحضور"></button>
+    <button id="mapBtn" class="hit" aria-label="عرض موقع المعرض على خرائط جوجل" title="عرض الموقع"></button>
+    <button id="hallBtn" class="hit" aria-label="عرض موقع القاعة على خرائط جوجل" title="عرض القاعة"></button>
+    <button id="freeBtn" class="hit" aria-label="حجز نسخة مجانية لأول عشرة متقدمين" title="حجز نسخة مجانية"></button>
+    <button id="reserveBtn" class="hit" aria-label="حجز نسخة من الرواية" title="حجز نسخة من الرواية"></button>
+    <div id="stars" role="group" aria-label="تقييم الرواية من عشر نجوم"></div>
+    <button id="commentBtn" class="hit" aria-label="كتابة تعليق للكاتبة" title="كتابة تعليق للكاتبة"></button>
+  </section>
+</main>
+
+<button id="musicToggle" type="button" aria-label="تشغيل أو إيقاف الموسيقى">♫ تشغيل الموسيقى</button>
+<audio id="music" src="music.mp3" preload="auto" loop></audio>
+<div id="status" role="status" aria-live="polite"></div>
+<div id="modalShade" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div id="modal">
+    <h2 id="modalTitle"></h2>
+    <form id="modalForm">
+      <div id="fields"></div>
+      <div class="actions">
+        <button class="primary" type="submit" id="submitText">متابعة</button>
+        <button class="secondary" type="button" id="closeModal">إلغاء</button>
+      </div>
+      <div class="note">لعدم وجود نظام حجز متصل بالموقع، سيتم تجهيز رسالة يمكنك إرسالها عبر واتساب إلى الجهة المنظمة. لا يُعد الحجز مؤكدًا إلا بعد الرد.</div>
+    </form>
+  </div>
+</div>
+<script>
+(() => {
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+  const music = document.getElementById('music');
+  const musicToggle = document.getElementById('musicToggle');
+  const status = document.getElementById('status');
+  const shade = document.getElementById('modalShade');
+  const modalTitle = document.getElementById('modalTitle');
+  const fields = document.getElementById('fields');
+  const form = document.getElementById('modalForm');
+  const submitText = document.getElementById('submitText');
+  let activeAction = '';
+  let selectedRating = 0;
+
+  function toast(msg) {
+    status.textContent = msg;
+    status.style.display = 'block';
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => status.style.display = 'none', 4200);
+  }
+  async function startMusic() {
+    try {
+      await music.play();
+      musicToggle.textContent = '♫ إيقاف الموسيقى';
+    } catch (e) {
+      musicToggle.textContent = '♫ اضغطي لتشغيل الموسيقى';
+      toast('المتصفح منع التشغيل التلقائي؛ اضغطي زر الموسيقى للتشغيل.');
+    }
+  }
+  function showPage2() {
+    page1.classList.remove('active');
+    page2.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+    startMusic();
+  }
+  document.getElementById('openBtn').addEventListener('click', showPage2);
+  musicToggle.addEventListener('click', async () => {
+    if (music.paused) await startMusic();
+    else { music.pause(); musicToggle.textContent = '♫ تشغيل الموسيقى'; }
+  });
+
+  const stars = document.getElementById('stars');
+  for (let n = 1; n <= 10; n++) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', `تقييم ${n} من 10`);
+    b.title = `${n} من 10`;
+    b.addEventListener('click', () => {
+      selectedRating = n;
+      openModal('rating', `تقييم الرواية: ${n} من 10`, [
+        {name:'name',label:'اسمك (اختياري)',type:'text',required:false},
+        {name:'comment',label:'تعليقك على الرواية (اختياري)',type:'textarea',required:false}
+      ], 'إرسال التقييم والتعليق');
+    });
+    stars.appendChild(b);
+  }
+
+  const mapFair = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Egypt International Exhibition Center New Cairo Cairo International Book Fair');
+  const mapHall = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Egypt International Exhibition Center Hall A New Cairo');
+  document.getElementById('mapBtn').addEventListener('click', () => window.open(mapFair, '_blank', 'noopener'));
+  document.getElementById('hallBtn').addEventListener('click', () => window.open(mapHall, '_blank', 'noopener'));
+
+  function openModal(action, title, definitions, submitLabel) {
+    activeAction = action;
+    modalTitle.textContent = title;
+    submitText.textContent = submitLabel || 'متابعة';
+    fields.replaceChildren();
+    definitions.forEach(def => {
+      const label = document.createElement('label');
+      label.htmlFor = 'field-' + def.name;
+      label.textContent = def.label;
+      let el;
+      if (def.type === 'textarea') el = document.createElement('textarea');
+      else if (def.type === 'select') {
+        el = document.createElement('select');
+        def.options.forEach(opt => {
+          const option = document.createElement('option');
+          option.value = opt.value; option.textContent = opt.label; el.appendChild(option);
+        });
+      } else el = document.createElement('input');
+      el.id = 'field-' + def.name;
+      el.name = def.name;
+      if (def.type && def.type !== 'textarea' && def.type !== 'select') el.type = def.type;
+      if (def.required) el.required = true;
+      if (def.placeholder) el.placeholder = def.placeholder;
+      fields.append(label, el);
+    });
+    shade.style.display = 'flex';
+  }
+  function closeModal() { shade.style.display = 'none'; }
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  shade.addEventListener('click', e => { if (e.target === shade) closeModal(); });
+
+  document.getElementById('rsvp').addEventListener('click', () => openModal('rsvp','تأكيد الحضور',[
+    {name:'name',label:'الاسم',type:'text',required:true,placeholder:'اكتبي اسمك'},
+    {name:'attendance',label:'تأكيد الحضور',type:'select',required:true,options:[
+      {value:'سأحضر',label:'سأحضر الحفل'},{value:'أعتذر عن الحضور',label:'أعتذر عن الحضور'}
+    ]},
+    {name:'guests',label:'عدد الحضور',type:'select',required:true,options:[
+      {value:'1',label:'شخص واحد'},{value:'2',label:'شخصان'},{value:'3',label:'3 أشخاص'},{value:'4+',label:'4 أشخاص أو أكثر'}
+    ]}
+  ],'تجهيز رسالة التأكيد'));
+
+  document.getElementById('freeBtn').addEventListener('click', () => openModal('free','طلب النسخة المجانية — لأول 10 متقدمين',[
+    {name:'name',label:'الاسم',type:'text',required:true,placeholder:'الاسم بالكامل'},
+    {name:'contact',label:'رقم للتواصل (اختياري)',type:'tel',required:false,placeholder:'رقم الهاتف'}
+  ],'طلب النسخة المجانية'));
+  document.getElementById('reserveBtn').addEventListener('click', () => openModal('reserve','حجز نسخة من رواية رؤى مبتورة',[
+    {name:'name',label:'الاسم',type:'text',required:true,placeholder:'الاسم بالكامل'},
+    {name:'quantity',label:'عدد النسخ',type:'select',required:true,options:[
+      {value:'1',label:'نسخة واحدة'},{value:'2',label:'نسختان'},{value:'3',label:'3 نسخ'},{value:'4+',label:'4 نسخ أو أكثر'}
+    ]},
+    {name:'contact',label:'رقم للتواصل (اختياري)',type:'tel',required:false,placeholder:'رقم الهاتف'}
+  ],'تجهيز طلب الحجز'));
+  document.getElementById('commentBtn').addEventListener('click', () => openModal('comment','اكتبي تعليقًا للكاتبة هند مصطفى رشيد',[
+    {name:'name',label:'اسمك (اختياري)',type:'text',required:false,placeholder:'اسمك'},
+    {name:'comment',label:'رسالتك للكاتبة',type:'textarea',required:true,placeholder:'اكتبي رسالتك هنا'}
+  ],'تجهيز الرسالة'));
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    const lines = ['رسالة بخصوص رواية «رؤى مبتورة» — الكاتبة هند مصطفى رشيد'];
+    if (activeAction === 'rsvp') {
+      lines.push('تأكيد الحضور: ' + data.attendance, 'الاسم: ' + data.name, 'عدد الحضور: ' + data.guests);
+    } else if (activeAction === 'free') {
+      lines.push('طلب التقدم لنسخة مجانية (ضمن أول 10 متقدمين إن توفرت)', 'الاسم: ' + data.name, 'رقم التواصل: ' + (data.contact || 'غير مذكور'));
+    } else if (activeAction === 'reserve') {
+      lines.push('طلب حجز نسخة/نسخ من الرواية', 'الاسم: ' + data.name, 'عدد النسخ: ' + data.quantity, 'رقم التواصل: ' + (data.contact || 'غير مذكور'));
+    } else if (activeAction === 'comment') {
+      lines.push('تعليق للكاتبة من: ' + (data.name || 'قارئ/ة'), data.comment);
+    } else if (activeAction === 'rating') {
+      lines.push('التقييم: ' + selectedRating + ' من 10', 'الاسم: ' + (data.name || 'بدون اسم'), 'التعليق: ' + (data.comment || 'بدون تعليق'));
+    }
+    const msg = encodeURIComponent(lines.join('\n'));
+    closeModal();
+    window.open('https://wa.me/?text=' + msg, '_blank', 'noopener');
+    toast('جهزنا الرسالة في واتساب؛ اختاري جهة الإرسال وأرسليها لإتمام الطلب.');
+  });
+})();
+</script>
+</body>
+</html>
